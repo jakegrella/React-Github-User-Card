@@ -72,23 +72,24 @@ class App extends Component {
 				</form>
 				<div className='cards'>
 					{this.state.people.map((user) => {
-						// <Card user={user} />;
-						<div className='card'>
-							<div className='card-userInfo'>
-								<img
-									className='card-userInfo-img'
-									src={user.avatar_url}
-									alt={user.name}
-								/>
-								<div className='card-userInfo-words'>
-									<h1>{user.name}</h1>
-									<h2>@{user.login}</h2>
-									<h4>{user.location}</h4>
-									<p>{user.public_repos} public repos</p>
+						return (
+							<div className='card'>
+								<div className='card-userInfo'>
+									<img
+										className='card-userInfo-img'
+										src={user.avatar_url}
+										alt={user.name}
+									/>
+									<div className='card-userInfo-words'>
+										<h1>{user.name}</h1>
+										<h2>@{user.login}</h2>
+										<h4>{user.location}</h4>
+										<p>{user.public_repos} public repos</p>
+									</div>
 								</div>
+								<div className='card-commitMap'>commit map</div>
 							</div>
-							<div className='card-commitMap'>commit map</div>
-						</div>;
+						);
 					})}
 				</div>
 			</div>
