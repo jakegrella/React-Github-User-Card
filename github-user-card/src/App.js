@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// import Card from './components/Card';
+import Card from './components/Card';
+import './style.scss';
 
 class App extends Component {
 	constructor() {
@@ -9,6 +10,7 @@ class App extends Component {
 		this.state = {
 			people: [],
 			username: '',
+			commits: [],
 		};
 	}
 
@@ -38,7 +40,6 @@ class App extends Component {
 		axios
 			.get(`https://api.github.com/users/${username}`)
 			.then((resp) => {
-				// console.log(resp);
 				this.setState({
 					people: [...this.state.people, resp.data],
 				});
@@ -72,24 +73,7 @@ class App extends Component {
 				</form>
 				<div className='cards'>
 					{this.state.people.map((user) => {
-						return (
-							<div className='card'>
-								<div className='card-userInfo'>
-									<img
-										className='card-userInfo-img'
-										src={user.avatar_url}
-										alt={user.name}
-									/>
-									<div className='card-userInfo-words'>
-										<h1>{user.name}</h1>
-										<h2>@{user.login}</h2>
-										<h4>{user.location}</h4>
-										<p>{user.public_repos} public repos</p>
-									</div>
-								</div>
-								<div className='card-commitMap'>commit map</div>
-							</div>
-						);
+						return <Card key={user.id} user={user} />;
 					})}
 				</div>
 			</div>
